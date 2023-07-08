@@ -4,6 +4,7 @@ import theme from '../../theme';
 import { DrawerContent } from './DrawerContent';
 import { PetHomeList } from '../../screens/PetHomeList';
 import { Profile } from '../../screens/Profile';
+import { DetailsPet } from '../../screens/DetailsPet';
 const {Navigator, Screen} = createDrawerNavigator();
 
 export default function DrawerPet() {
@@ -43,9 +44,14 @@ export default function DrawerPet() {
           title: 'HOME',
           // headerShown: true
           }}
-        name="PetHomeList" 
+        name="ListPetStack" 
         component={PetHomeList} />
         <Screen name="Profile" component={Profile} />
+        <Screen
+        options={{
+          headerShown: false,
+        }}
+        name="DetailsPet" component={DetailsPet} />
       </Navigator>
   );
 }

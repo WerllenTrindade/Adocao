@@ -40,6 +40,8 @@ export const styles = StyleSheet.create({
       color:theme.COLORS.TITLE
     },
     button:{
-      paddingBottom: 5
+      // paddingBottom: 5
+      position: 'absolute', 
+      right: 0
     }
 });

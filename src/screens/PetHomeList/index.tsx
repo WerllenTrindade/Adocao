@@ -2,13 +2,16 @@ import React, { useEffect } from 'react';
 import { Text, LogBox, SafeAreaView, View, FlatList } from 'react-native'
 import { Action } from '../../components/Action';
 import theme from '../../theme';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import styles from './styles';
 import { CardDog } from '../../components/Cards/CardDog';
 import { pets } from '../../mock';
+import { propsStack } from '../../routes/Models';
+import { useNavigation } from '@react-navigation/native';
 
 
 export function PetHomeList() {
+  const { navigate } = useNavigation<propsStack>();
 
   useEffect(() => {
     LogBox.ignoreLogs(
@@ -30,13 +33,14 @@ export function PetHomeList() {
           </View>
           </View>
           <Text style={styles.textInfo}>{pets.length} Pets</Text>
-        </View>
 
+        </View>
         <FlatList
         keyExtractor={item => item.id.toString()}
         data={pets}
         renderItem={({ item, index }) =>
         <CardDog
+          onPress={() => navigate('DetailsPet')}
           data={item}
         />
       }

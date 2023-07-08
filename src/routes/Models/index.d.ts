@@ -5,6 +5,7 @@ export type propsNavigationStack =  {
     SignIn: undefined | any;
     
     PetHomeList: undefined | any;
+    DetailsPet: undefined | any;
     Profile: undefined | any;
 }
 
