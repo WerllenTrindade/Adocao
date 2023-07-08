@@ -4,7 +4,7 @@ import theme from '../../theme';
 export const styles = StyleSheet.create({
   container: {
     width: '100%',
-    padding: 19,
+    padding: 15,
     alignItems: 'center',
     justifyContent: 'flex-end',
     backgroundColor: theme.COLORS.PRIMARY,
@@ -13,7 +13,8 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: 15,
-    color: '#FFFFFF',
-    fontFamily: 'Bold'
+    color: theme.COLORS.WHITE,
+    fontFamily: 'SemiBold',
+    letterSpacing: 1
   },
 });
