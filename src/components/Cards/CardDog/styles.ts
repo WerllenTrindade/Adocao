@@ -31,12 +31,12 @@ export const styles = StyleSheet.create({
       paddingLeft: 5
     },
     textDog:{
-      fontFamily: 'Regular',
+      fontFamily: 'PoppinsRegular',
       color:theme.COLORS.TEXT, 
       lineHeight: 20
     },
     titleDog:{
-      fontFamily: 'SemiBold', 
+      fontFamily: 'PoppinsSemiBold', 
       color:theme.COLORS.TITLE
     },
     button:{

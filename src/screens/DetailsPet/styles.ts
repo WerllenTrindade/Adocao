@@ -11,18 +11,17 @@ const styles = StyleSheet.create({
   },
   image:{
     height: 250,
-    // width: 400,
     maxWidth: '90%'
   },
   name: {
     fontSize: 25,
-    fontFamily: 'Regular',
+    fontFamily: 'PoppinsBold',
     color: theme.COLORS.TITLE,
     letterSpacing: 1.5,
     paddingBottom: 8
   },
   race:{
-    fontFamily: 'Regular',
+    fontFamily: 'MontserratRegular',
     paddingTop: 2,
     color: theme.COLORS.CAPTION_500,
     alignSelf: 'flex-end',

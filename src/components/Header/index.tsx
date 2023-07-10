@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: theme.COLORS.WHITE, 
-    fontFamily: 'Poppins', 
+    fontFamily: 'PoppinsRegular', 
     letterSpacing: 1,
     fontSize: 20
   }

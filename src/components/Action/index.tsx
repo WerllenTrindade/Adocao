@@ -24,7 +24,7 @@ export function Action({async, like }: Props){
       right: 75
     }}
       textStyle={{
-        fontFamily: 'SemiBold',
+        fontFamily: 'PoppinsSemiBold',
         color: theme.COLORS.TITLE,
         letterSpacing: 0.5,
         fontSize: 14,
@@ -43,7 +43,7 @@ export function Action({async, like }: Props){
         right: 75
       }}
       textStyle={{
-        fontFamily: 'SemiBold',
+        fontFamily: 'PoppinsSemiBold',
         color: theme.COLORS.TITLE,
         letterSpacing: 0.5,
         fontSize: 14,

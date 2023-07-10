@@ -22,7 +22,7 @@ export const RouterDrawer = [
     isExpanded: false, //Se ele já vem expandido(Clicado) 
     itemCount: 0, //Se existe item
     categoryName: 'DASHBOARD', //titlo
-    route: 'PetHomeList', //Rota na qual ele vai ser enviada ao clicar
+    route: 'ListPetStack', //Rota na qual ele vai ser enviada ao clicar
     subcategory: [], //SubMenus
   },
   {

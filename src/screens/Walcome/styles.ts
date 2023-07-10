@@ -21,12 +21,12 @@ const styles = StyleSheet.create({
   bodyTitle:{
     fontSize: 25,
     paddingBottom: 5,
-    fontFamily: 'SemiBold'
+    fontFamily: 'PoppinsSemiBold'
   },
   bodyText:{
     fontSize: 20,
     letterSpacing: 1,
-    fontFamily: 'Light'
+    fontFamily: 'PoppinsLight'
   },
   containButton:{
     alignItems: 'center',
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   textButton:{
-    fontWeight: 'bold',
+    fontWeight: 'PoppinsBold',
     color: theme.COLORS.WHITE,
     fontSize: 20,
     paddingVertical: 15,

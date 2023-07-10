@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: 40,
-    fontWeight: 'bold',
+    fontWeight: 'PoppinsBold',
     color: '#47474D',
   },
   subtitle: {

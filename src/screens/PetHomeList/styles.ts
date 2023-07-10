@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 },
 title:{
   color: theme.COLORS.WHITE,
-  fontFamily: 'Regular',
+  fontFamily: 'PoppinsRegular',
   fontSize: 20,
   paddingVertical: 15,
   paddingHorizontal: 25
@@ -30,7 +30,7 @@ title:{
     paddingHorizontal: 10
   },
   textInfo:{
-    fontFamily: 'Regular', 
+    fontFamily: 'PoppinsRegular', 
     fontSize: 18
   }
 

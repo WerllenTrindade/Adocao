@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   textInfo: {
     color: theme.COLORS.WHITE,
     padding: 9,
-    fontFamily: 'SemiBold'
+    fontFamily: 'PoppinsSemiBold'
   }
 })
 

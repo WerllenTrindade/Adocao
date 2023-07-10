@@ -14,7 +14,7 @@ export default function DrawerPet() {
         headerTintColor: '#fff',
         headerTitleStyle:{
           color: theme.COLORS.WHITE, 
-          fontFamily: 'Poppins', 
+          fontFamily: 'PoppinsRegular', 
           letterSpacing: 1,
           fontSize: 20
         },
@@ -34,7 +34,7 @@ export default function DrawerPet() {
         },
         drawerLabelStyle:{
           color: theme.COLORS.TITLE,
-          fontFamily: 'Regular',
+          fontFamily: 'PoppinsRegular',
         },
         drawerActiveTintColor: theme.COLORS.PRIMARY,
         

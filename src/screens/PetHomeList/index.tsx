@@ -27,9 +27,9 @@ export function PetHomeList() {
 
         <View style={styles.containInfo}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={{fontFamily: 'Regular', fontSize: 16}}>Filtro: </Text>
+          <Text style={{fontFamily: 'PoppinsRegular', fontSize: 16}}>Filtro: </Text>
           <View style={{backgroundColor: theme.COLORS.PRIMARY, borderRadius: 8}}>
-          <Text style={{fontFamily: 'Regular', fontSize: 14, color: theme.COLORS.WHITE, paddingHorizontal: 8}}>Todos</Text>
+          <Text style={{fontFamily: 'PoppinsRegular', fontSize: 14, color: theme.COLORS.WHITE, paddingHorizontal: 8}}>Todos</Text>
           </View>
           </View>
           <Text style={styles.textInfo}>{pets.length} Pets</Text>

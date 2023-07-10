@@ -45,7 +45,7 @@ export function SignIn() {
             style={styles.logo}
             source={require('../../../assets/logo1.png')}
             />
-          <Text style={{fontFamily: 'Bold', fontSize: 35}}>Adocão</Text>
+          <Text style={{fontFamily: 'PoppinsBold', fontSize: 35}}>Adocão</Text>
           </View>
 
           <View>
@@ -75,7 +75,7 @@ export function SignIn() {
             onValueChange={handleRememberPassword}
             color={rememberPassword ? theme.COLORS.PRIMARY : undefined}
           />
-          <Text style={{fontSize: 15, fontFamily: 'Regular', alignItems: 'flex-end', color: theme.COLORS.TITLE}}>Lembra minha senha</Text>
+          <Text style={{fontSize: 15, fontFamily: 'PoppinsRegular', alignItems: 'flex-end', color: theme.COLORS.TITLE}}>Lembra minha senha</Text>
           </View>
           </View>
           <View>{}</View>

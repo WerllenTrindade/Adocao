@@ -107,12 +107,12 @@ const styles = StyleSheet.create({
     marginTop: 55,
     color: '#fff',
     fontSize: 18,
-    fontFamily: 'SemiBold',
+    fontFamily: 'PoppinsSemiBold',
     marginBottom: 5
   },
   email:{
     color: '#fff',
-    fontFamily: 'Regular',
+    fontFamily: 'PoppinsRegular',
     // marginRight: 5,
     fontSize: 13
   },
@@ -132,6 +132,6 @@ const styles = StyleSheet.create({
 textOut:{
   marginLeft: 5,
   color: theme.COLORS.ATTENTION,
-  fontFamily: 'Regular'
+  fontFamily: 'PoppinsRegular'
 }
 })

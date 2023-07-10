@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 15,
     color: theme.COLORS.WHITE,
-    fontFamily: 'SemiBold',
+    fontFamily: 'PoppinsSemiBold',
     letterSpacing: 1
   },
 });
