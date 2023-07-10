@@ -1,47 +1,79 @@
 import { StyleSheet } from 'react-native';
 import theme from '../../../theme';
+import { RFValue } from 'react-native-responsive-fontsize';
+
+const heigthCard = (theme.SIZES.width - 10) / 2 + 15
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 10, 
-    paddingVertical: 8, 
-    position: 'relative'
-  },
-  contain: {
-    flexDirection: 'row',
-    alignItems: 'flex-end', 
-    paddingHorizontal: 10, 
-    borderWidth: 0.5, 
-    borderRadius: 5, 
-    backgroundColor: theme.COLORS.BACKGROUND,
-    borderColor: theme.COLORS.CAPTION_400, 
-    justifyContent: 'space-between'
-    },
-    containLeft: {
-      flexDirection: 'row', 
-      alignItems: 'center'
+    card:{
+      width: (theme.SIZES.width - 30) / 3,
+      height: (theme.SIZES.width - 10) / 2 + 15,
+      marginHorizontal: 3,
+      marginBottom: 15,
+      position: 'relative',
     },
     img:{
-      height: 100, 
-      maxHeight: 100, 
-      width: 100
+      height: 100,  
+      width: 250,
+      maxHeight: 150,
+      maxWidth: (theme.SIZES.width - 30) / 3
     },
-    containText: {
-      paddingLeft: 5
-    },
-    textDog:{
-      fontFamily: 'PoppinsRegular',
-      color:theme.COLORS.TEXT, 
-      lineHeight: 20
-    },
-    titleDog:{
-      fontFamily: 'PoppinsSemiBold', 
-      color:theme.COLORS.TITLE
-    },
+    containBody:{flex: 1, width: '100%'
+  },
     button:{
-      // paddingBottom: 5
+      bottom: -10,
       position: 'absolute', 
-      right: 0
-    }
+      right: -8
+    },
+    Details:{
+        // flex: 1,
+        alignItems: 'center',
+    },
+      TableStatusOpen: {
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: heigthCard
+      },
+
+      NameFechamento:{
+        fontSize: 15,
+        fontFamily: 'PoppinsSemiBold',
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+      cardHiden: {
+        flex: 1,
+        marginHorizontal: 3,
+        marginVertical: 3,
+        opacity: 0
+      },
+      containDetailsDog:
+      {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 8
+      },
+      titleDetails:
+      {
+        fontFamily: 'PoppinsSemiBold', 
+        fontSize: 12
+      },
+      textDetails:
+      {
+        fontFamily: 'PoppinsRegular', 
+        fontSize: 12
+      },
+      containRace: {
+      justifyContent: 'center', 
+        paddingTop: 5, 
+        alignItems: 'center',
+        paddingHorizontal: 8
+      },
+      race:{
+        fontFamily: 'PoppinsSemiBold', 
+        fontSize: 12, 
+        color: theme.COLORS.PRIMARY
+      }
 });

@@ -24,7 +24,7 @@ title:{
   },
   containInfo:{
     flexDirection: 'row', 
-    paddingTop: 5, 
+    paddingVertical: 7, 
     alignItems: 'center', 
     justifyContent: 'space-between', 
     paddingHorizontal: 10
@@ -32,7 +32,14 @@ title:{
   textInfo:{
     fontFamily: 'PoppinsRegular', 
     fontSize: 18
-  }
+  },
+  containerList: {
+    flex: 1,
+    marginHorizontal: 7,
+  },
+  list: {
+    justifyContent: 'space-around',
+  },
 
 })
 

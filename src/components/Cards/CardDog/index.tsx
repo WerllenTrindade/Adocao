@@ -1,11 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { View, Text, Image, ActivityIndicator, TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import axios from 'axios';
 
 import { styles } from './styles';
 import Lottie from 'lottie-react-native';
+import { Card } from 'react-native-paper';
+import theme from '../../../theme';
 
-interface dogProps {
+export interface dogProps {
   id: number,
   nome: string,
   raca: string,
@@ -15,8 +17,9 @@ interface dogProps {
 
 interface Props extends TouchableOpacityProps {
   data: dogProps;
+  navigate: () => void;
 }
-export function CardDog({ data, ...rest }: Props) {
+const CardDog = ({ data, navigate, ...rest }: Props) => {
   const animation = useRef<any>(null);
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState('');
@@ -54,35 +57,49 @@ export function CardDog({ data, ...rest }: Props) {
   };
 
   return (
-    <TouchableOpacity {...rest} style={styles.container}>
-        <View style={styles.contain}>
-        <View style={styles.containLeft}>
+    <Card style={styles.card}>
+      <TouchableOpacity style={styles.TableStatusOpen} onPress={navigate} {...rest}>
+        <View style={styles.Details}>
         {loading ? (
-          <ActivityIndicator size="large" color="gray" />
-        ) : (  
-          <Image resizeMode='contain' style={styles.img} source={{uri: image !=="" ? image : undefined }} />
-        )}
-        <View style={styles.containText}>
-          <Text style={styles.titleDog}>{data.nome}</Text>
-          <Text style={styles.textDog}><Text style={styles.titleDog}>Idade:</Text> {data.idade}</Text>
-          <Text style={styles.textDog}><Text style={styles.titleDog}>Peso:</Text> {data.peso}</Text>
-          <Text style={styles.textDog}><Text style={styles.titleDog}>Raça:</Text> {data.raca}</Text>
-        </View>
+            <ActivityIndicator size="large" color="gray" />
+          ) : (  
+            <Image resizeMode='stretch' style={styles.img} source={{uri: image !=="" ? image : undefined }} />
+          )}
+           <Text allowFontScaling={false} style={styles.NameFechamento}>{data.nome}</Text>
         </View>
 
-        <TouchableOpacity 
-          onPress={() => setIsLiked(state => !state)} 
-          style={styles.button}>
-        <Lottie 
-          ref={animation}
-          source={require('../../../../assets/94181-like.json')}
-          style={{width: 45, height: 45}}
-          resizeMode='contain'
-          autoPlay={true}
-          loop={false} 
-        />
-        </TouchableOpacity>
+        <View style={styles.containBody}>
+        <View style={styles.containDetailsDog}>
+          <Text style={styles.titleDetails}>Idade </Text>
+          <Text style={styles.textDetails}>{data.idade} anos</Text>
         </View>
-    </TouchableOpacity>
+        <View style={styles.containDetailsDog}>
+          <Text style={styles.titleDetails}>Peso</Text>
+          <Text style={styles.textDetails}>{data.peso} KG</Text>
+        </View>
+        <View style={styles.containRace}>
+          <Text style={styles.race}>{data.raca}</Text>
+        </View>
+        
+        </View>
+        <TouchableOpacity 
+            onPress={() => setIsLiked(state => !state)} 
+            style={styles.button}>
+            <Lottie 
+            ref={animation}
+            source={require('../../../../assets/94181-like.json')}
+            style={{width: 45, height: 45}}
+            resizeMode='contain'
+            autoPlay={true}
+            loop={false} 
+            />
+        </TouchableOpacity>
+      </TouchableOpacity>
+    </Card>
   );
 }
+
+export default memo(CardDog)
+
+
+
