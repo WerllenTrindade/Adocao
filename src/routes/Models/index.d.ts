@@ -1,6 +1,7 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type propsNavigationStack =  {
+    Register: undefined | any;
     Walcome: undefined | any;
     SignIn: undefined | any;
     

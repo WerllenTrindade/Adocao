@@ -8,10 +8,12 @@ import CardDog, { dogProps } from '../../components/Cards/CardDog';
 import { pets } from '../../mock';
 import { propsStack } from '../../routes/Models';
 import { useNavigation } from '@react-navigation/native';
+import useFetchRepos from '../../querys/repo';
 
 
 export function PetHomeList() {
   const { navigate } = useNavigation<propsStack>();
+  // const {data } = useFetchRepos();
 
   useEffect(() => {
     LogBox.ignoreLogs(
@@ -20,8 +22,10 @@ export function PetHomeList() {
       ]);
   }, []);
 
+
+
   const handleDogDetails = async (item: dogProps) => {
-    
+
     navigate('DetailsPet')
   }
 

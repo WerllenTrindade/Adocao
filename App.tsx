@@ -3,6 +3,7 @@ import React, { useCallback, useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaView, StatusBar } from 'react-native';
 import { Routers } from './src/routes/Routes';
+import { QueryClientProvider } from '@tanstack/react-query'
 import {
   useFonts,
   Montserrat_400Regular,
@@ -17,6 +18,7 @@ import {
 } from '@expo-google-fonts/poppins'
 import * as SplashScreen from 'expo-splash-screen';
 import { Provider as PaperProvider } from 'react-native-paper';
+import { AppProvider } from './src/context';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -55,10 +57,12 @@ export default function App() {
   return (
     <SafeAreaView style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <PaperProvider>
-        <NavigationContainer>
-          <StatusBar barStyle="dark-content" backgroundColor='transparent' />
-          <Routers />
-        </NavigationContainer>
+        <AppProvider>
+            <NavigationContainer>
+              <StatusBar barStyle="dark-content" backgroundColor='transparent' />
+              <Routers />
+            </NavigationContainer>
+        </AppProvider>
       </PaperProvider>
     </SafeAreaView>
   );

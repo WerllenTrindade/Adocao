@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Keyboard, Text, TouchableWithoutFeedback, Image } from 'react-native';
+import { Keyboard, Text, TouchableWithoutFeedback, TouchableOpacity, Image } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { styles } from './styles';
 import { View } from 'react-native'
@@ -9,11 +9,11 @@ import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from '../../components/Button';
 import theme from '../../theme';
+import { SignCredentials, useAuth } from '../../context/Auth';
+import { ActivityIndicator } from 'react-native-paper';
+import { propsStack } from '../../routes/Models';
+import { useNavigation } from '@react-navigation/native';
 
-type FormData = {
-  email: string;
-  password: string;
-}
 
 const schema = yup.object({
   email: yup.string().email("E-mail inválido").required("Informe o e-mail"),
@@ -21,14 +21,17 @@ const schema = yup.object({
 });
 
 export function SignIn() {
+  const { navigate } = useNavigation<propsStack>();
+  const { signIn, isLoading } = useAuth();
   const [rememberPassword, setRememberPassword] = useState(false);
-  const { control, handleSubmit, formState: { errors } } = useForm<FormData>({
+  const { control, handleSubmit, formState: { errors } } = useForm<SignCredentials>({
     resolver: yupResolver(schema)
   });
 
-  function handleUserRegister(data: FormData) {
-    console.log('dhqwudhqwu')
-    console.log(data);
+  function handleUserRegister(data: any) {
+    const email = data.email
+    const password = data.password
+    signIn({email, password});
   }
 
   const handleRememberPassword = () => {
@@ -49,7 +52,7 @@ export function SignIn() {
           </View>
 
           <View>
-          <View style={{paddingBottom: 10}}>
+          <View style={{paddingBottom: 5}}>
           <ControlledInput
             name="email"
             control={control}
@@ -68,22 +71,41 @@ export function SignIn() {
             secureTextEntry
             error={errors.password}
           />
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={{flexDirection: 'row', marginTop: 5, alignItems: 'center'}}>
           <Checkbox
             style={{marginRight: 5}}
             value={rememberPassword}
             onValueChange={handleRememberPassword}
             color={rememberPassword ? theme.COLORS.PRIMARY : undefined}
           />
-          <Text style={{fontSize: 15, fontFamily: 'PoppinsRegular', alignItems: 'flex-end', color: theme.COLORS.TITLE}}>Lembra minha senha</Text>
+          <Text style={{fontSize: 12, fontFamily: 'PoppinsRegular', alignItems: 'flex-end', color: theme.COLORS.TITLE}}>Lembra minha senha</Text>
           </View>
           </View>
           <View>{}</View>
           <View>
           <Button
-            title="Logar"
+            title={
+              isLoading ?
+            "Loading..."
+            : "Logar"
+            }
             onPress={handleSubmit(handleUserRegister)}
           />
+          <TouchableOpacity
+          onPress={() => navigate('Register')} 
+          style={{
+            alignItems: 'center',
+            borderRadius: 5,
+            borderWidth: 0.5,
+            borderColor: theme.COLORS.PRIMARY,
+            }}>
+            <Text 
+            style={{
+              color: theme.COLORS.PRIMARY,
+              paddingVertical: 12,
+              fontFamily: 'PoppinsSemiBold'
+              }}>Cadastrar</Text>
+          </TouchableOpacity>
           </View>
         </View>
       </TouchableWithoutFeedback>

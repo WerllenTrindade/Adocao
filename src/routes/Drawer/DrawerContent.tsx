@@ -20,10 +20,12 @@ import { useNavigation, DrawerActions  } from '@react-navigation/native';
 import { RouterDrawer } from '../../utils/router';
 import { ExpandableItemComponent } from '../../components/ExpandableViewSeparate';
 import theme from '../../theme';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAuth } from '../../context/Auth';
 
 export const DrawerContent = (props: any) => {
   const navigation = useNavigation();
+  const { setAuthData} = useAuth()
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const [listDataSource, setListDataSource] = React.useState(RouterDrawer);
@@ -31,7 +33,8 @@ export const DrawerContent = (props: any) => {
 
   async function handleOnClose() {
     setLoading(true)
-    // setAuthData(undefined);
+    await AsyncStorage.removeItem('otimaGestao@User');
+    setAuthData(undefined);
     setLoading(false)
   }
 

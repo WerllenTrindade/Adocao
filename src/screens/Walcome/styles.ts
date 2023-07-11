@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     fontFamily: 'PoppinsSemiBold'
   },
   bodyText:{
-    fontSize: 20,
+    fontSize: 18,
     letterSpacing: 1,
     fontFamily: 'PoppinsLight'
   },
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   textButton:{
-    fontWeight: 'PoppinsBold',
+    fontWeight: '700',
     color: theme.COLORS.WHITE,
     fontSize: 20,
     paddingVertical: 15,
