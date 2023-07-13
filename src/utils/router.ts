@@ -32,15 +32,11 @@ export const RouterDrawer = [
     route: 'Profile',
     subcategory: [],
   },
-  // {
-  //   isExpanded: false,
-  //   itemCount: 1,
-  //   categoryName: 'RELATORIOS',
-  //   route: '',
-  //   subcategory: [
-  //     { id: 1, val: 'Fechamento de caixa', subRoute: 'ListCategory'}, 
-  //     { id: 2, val: 'Resumo do mês' },
-  //     { id: 3, val: 'Sub Cat 3' }
-  //   ],
-  // }
+  {
+    isExpanded: false,
+    itemCount: 0,
+    categoryName: 'FAQ',
+    route: 'CommonQuestions',
+    subcategory: [],
+  }
 ];

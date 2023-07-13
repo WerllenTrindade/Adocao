@@ -5,6 +5,7 @@ import { DrawerContent } from './DrawerContent';
 import { PetHomeList } from '../../screens/PetHomeList';
 import { Profile } from '../../screens/Profile';
 import { DetailsPet } from '../../screens/DetailsPet';
+import { CommonQuestions } from '../../screens/CommonQuestions';
 const {Navigator, Screen} = createDrawerNavigator();
 
 export default function DrawerPet() {
@@ -52,6 +53,11 @@ export default function DrawerPet() {
           headerShown: false,
         }}
         name="DetailsPet" component={DetailsPet} />
+        <Screen
+        options={{
+          title: 'Perguntas Frequentes'
+        }}
+        name="CommonQuestions" component={CommonQuestions} />
       </Navigator>
   );
 }

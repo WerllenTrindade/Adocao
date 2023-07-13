@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { View, BackHandler, Image, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Header } from '../../components/Header';
@@ -13,8 +13,10 @@ import styles from './styles';
 import { SafeAreaView } from 'react-native';
 import { ArrDetails } from './ArrDetails';
 import { Button } from '../../components/Button';
+import { AdotarCao } from '../../components/Modals/AdotarCao';
 
 export function DetailsPet(){
+  const [visibleModal, setVisibleModal] = useState(true);
   const { navigate, canGoBack, goBack } = useNavigation<propsStack>();
   useEffect(() => {
       BackHandler.addEventListener('hardwareBackPress', handleBackButton);        
@@ -87,15 +89,39 @@ export function DetailsPet(){
       </View>
 
       <ScrollView style={{paddingHorizontal: 15, paddingTop: 25}}>
-        <Text style={{fontFamily: 'MontserratBold', fontSize: 20}}>Sobre</Text>
-        <Text style={{fontFamily: 'PoppinsRegular', fontSize: 14, textAlign: 'justify'}}>Cachorro resgatado na rua, agora vive feliz e ajuda a encontrar{' '}
-            lares para outros animais abandonados. Um verdadeiro herói peludo!</Text>
+        <View >
+          <Text style={{fontFamily: 'MontserratBold', fontSize: 25}}>Personalidade</Text>
+          <Text style={{fontFamily: 'PoppinsRegular', fontSize: 14, textAlign: 'justify'}}>
+            Dócil e tranquila
+          </Text>
+        </View>
+        <View style={{paddingTop: 8}}>
+          <Text style={{fontFamily: 'MontserratBold', fontSize: 25}}>Porte</Text>
+          <Text style={{fontFamily: 'PoppinsRegular', fontSize: 14, textAlign: 'justify'}}>
+           Médio
+          </Text>
+        </View>
+        <View style={{paddingTop: 8}}>
+          <Text style={{fontFamily: 'MontserratBold', fontSize: 25}}>Sobre</Text>
+          <Text style={{fontFamily: 'PoppinsRegular', fontSize: 14, textAlign: 'justify'}}>
+            Cachorro resgatado na rua, agora vive feliz e ajuda a encontrar{' '}
+            lares para outros animais abandonados. Um verdadeiro herói peludo!
+          </Text>
+        </View>
       </ScrollView>
 
       <View style={{paddingHorizontal: 15, flex:1, justifyContent: 'flex-end', paddingBottom: '2%'}}>
-      <Button title='ADOTAR'/>
+      <Button onPress={() => {}} title='ADOTAR'/>
       </View>
       </SafeAreaView>
-      </View>
+
+      {
+        visibleModal &&
+        <AdotarCao
+        onClose={() => {}}
+        visible={visibleModal}
+        />
+      }
+    </View>
   )
 }

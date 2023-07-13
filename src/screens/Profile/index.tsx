@@ -4,7 +4,6 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { Avatar, List, TextInput } from 'react-native-paper';
 import theme from '../../theme';
 import { Input } from './Input';
-import { maritalStatus } from '../../utils/utils';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 
