@@ -27,10 +27,13 @@ export const RouterDrawer = [
   },
   {
     isExpanded: false,
-    itemCount: 0,
-    categoryName: 'PERFIL',
+    itemCount: 1,
+    categoryName: 'Dados Usuario',
     route: 'Profile',
-    subcategory: [],
+    subcategory: [
+      { id: 1, val: 'Perfil' },
+      { id: 2, val: 'Perfil de adoção' }
+    ],
   },
   {
     isExpanded: false,

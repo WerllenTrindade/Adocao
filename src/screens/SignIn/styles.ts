@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import theme from '../../theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -11,7 +12,19 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    height: 150,
-    width: 200,
+    height: 80,
+    width: 130,
   },
+  rememberPassword:
+  { 
+    fontSize: 12, 
+    fontFamily: 'PoppinsRegular', 
+    alignItems: 'flex-end', 
+    color: theme.COLORS.TITLE 
+  },
+  rememberPassView: {
+    flexDirection: 'row',
+     marginTop: 5, 
+    alignItems: 'center'
+  }
 });

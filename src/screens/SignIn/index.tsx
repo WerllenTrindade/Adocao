@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Keyboard, Text, TouchableWithoutFeedback, TouchableOpacity, Image } from 'react-native';
+import { Keyboard, Text, TouchableWithoutFeedback, Image, View, SafeAreaView} from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { styles } from './styles';
-import { View } from 'react-native'
 import { ControlledInput } from '../../components/ControlledInput';
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
@@ -13,6 +12,8 @@ import { SignCredentials, useAuth } from '../../context/Auth';
 import { ActivityIndicator } from 'react-native-paper';
 import { propsStack } from '../../routes/Models';
 import { useNavigation } from '@react-navigation/native';
+import { ToggleSignIn } from '../../components/ToggleSignIn';
+import { Register } from '../Register';
 
 
 const schema = yup.object({
@@ -22,93 +23,93 @@ const schema = yup.object({
 
 export function SignIn() {
   const { navigate } = useNavigation<propsStack>();
-  const { signIn, isLoading } = useAuth();
+  const {handleSubmitSigIn, isLoading, switchAccessType, setSwitchAccessType} = useAuth();
   const [rememberPassword, setRememberPassword] = useState(false);
   const { control, handleSubmit, formState: { errors } } = useForm<SignCredentials>({
     resolver: yupResolver(schema)
   });
 
-  function handleUserRegister(data: any) {
-    const email = data.email
-    const password = data.password
-    signIn({email, password});
-  }
-
   const handleRememberPassword = () => {
     setRememberPassword(state => !state)
   }
 
+  const handleToggleRegister = () => setSwitchAccessType(1)
+  const handleToggleSignIn = () => setSwitchAccessType(0)
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{justifyContent: 'space-between', flex: 1}}>
-        <View style={styles.containLogo}>
+        <View style={{ justifyContent: 'space-between', flex: 1 }}>
+
+          {/* HEADER */}
+          <View style={styles.containLogo}>
             <Image
-            resizeMode='contain'
-            style={styles.logo}
-            source={require('../../../assets/logo1.png')}
+              resizeMode='contain'
+              style={styles.logo}
+              source={require('../../../assets/logo1.png')}
             />
-          <Text style={{fontFamily: 'PoppinsBold', fontSize: 35}}>Adocão</Text>
+            <Text style={{ fontFamily: 'PoppinsBold', fontSize: 25 }}>Adocão</Text>
+            <View style={{ width: '100%' }}>
+              <ToggleSignIn
+                alterRegister={switchAccessType}
+                registerToggle={handleToggleRegister}
+                singInToggle={handleToggleSignIn} />
+            </View>
           </View>
 
+          <View style={{flex: 1, paddingTop: '10%'}}>
+          {/* FORMULADRIO */}
+          { switchAccessType == 0 ?
+          <>
+              <ControlledInput
+                name="email"
+                control={control}
+                icon="mail"
+                placeholder="E-mail"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                error={errors.email}
+              />
+            <ControlledInput
+              name="password"
+              control={control}
+              icon="lock"
+              placeholder="Senha"
+              secureTextEntry
+              error={errors.password}
+            />
+            <View style={styles.rememberPassView}>
+              <Checkbox
+                style={{ marginRight: 5 }}
+                value={rememberPassword}
+                onValueChange={handleRememberPassword}
+                color={rememberPassword ? theme.COLORS.PRIMARY : undefined}
+              />
+              <Text style={styles.rememberPassword}>Lembra minha senha</Text>
+            </View>
+          </>
+          :
+           <Register />
+          }
+          </View>
+          <View>{ }</View>
+
+          {/* BOTÃO */}
+          {
+          switchAccessType == 0 &&
           <View>
-          <View style={{paddingBottom: 5}}>
-          <ControlledInput
-            name="email"
-            control={control}
-            icon="mail"
-            placeholder="E-mail"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            error={errors.email}
-          />
+            <Button
+              title={
+                isLoading ?
+                  "Loading..."
+                  : "Logar"
+              }
+              onPress={handleSubmit(handleSubmitSigIn)}
+            />
           </View>
-          <ControlledInput
-            name="password"
-            control={control}
-            icon="lock"
-            placeholder="Senha"
-            secureTextEntry
-            error={errors.password}
-          />
-          <View style={{flexDirection: 'row', marginTop: 5, alignItems: 'center'}}>
-          <Checkbox
-            style={{marginRight: 5}}
-            value={rememberPassword}
-            onValueChange={handleRememberPassword}
-            color={rememberPassword ? theme.COLORS.PRIMARY : undefined}
-          />
-          <Text style={{fontSize: 12, fontFamily: 'PoppinsRegular', alignItems: 'flex-end', color: theme.COLORS.TITLE}}>Lembra minha senha</Text>
-          </View>
-          </View>
-          <View>{}</View>
-          <View>
-          <Button
-            title={
-              isLoading ?
-            "Loading..."
-            : "Logar"
-            }
-            onPress={handleSubmit(handleUserRegister)}
-          />
-          <TouchableOpacity
-          onPress={() => navigate('Register')} 
-          style={{
-            alignItems: 'center',
-            borderRadius: 5,
-            borderWidth: 0.5,
-            borderColor: theme.COLORS.PRIMARY,
-            }}>
-            <Text 
-            style={{
-              color: theme.COLORS.PRIMARY,
-              paddingVertical: 12,
-              fontFamily: 'PoppinsSemiBold'
-              }}>Cadastrar</Text>
-          </TouchableOpacity>
-          </View>
+          }
         </View>
       </TouchableWithoutFeedback>
-    </View>
+    </SafeAreaView>
   );
 }

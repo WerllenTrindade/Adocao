@@ -18,25 +18,13 @@ interface DataProps extends ModalProps {
     onClose: () => void;
 }
 
-export function AdotarCao({ onClose, ...rest}: DataProps){
+export function AdotarDog({ onClose, ...rest}: DataProps){
   const { navigate } = useNavigation<propsStack>(); 
-  const optionsPedido = [ 
-    { id: 1, 
-    text: 'Pedido Indoor',
-    description: 'Este pedido deve ser realizado dentro do seu estabelecimento, para ser importado pelo PDV'}, 
-    { id: 2, 
-    text: 'Pedido OutDoor',  
-    description: 'Este pedido deve ser realizado enquanto estiver fora do seu estabelecimento'}]
-
-  const [checkboxPrintCashier, setCheckboxPrintCashier] = useState([]);
 
 
   async function handleConfirm(item: any){
-    // await AsyncStorage.removeItem('pedido');
 
-    // navigate('SelectProduct')
-    // setVisibleModal(false)
-}
+    }
 
     return(
         <KeyboardAvoidingView
@@ -74,13 +62,15 @@ export function AdotarCao({ onClose, ...rest}: DataProps){
                         />
                 </View>
                         <View style={styles.PrimaryColumn}>
-                         
                           <Text style={{fontSize: 25, fontFamily: 'MontserratRegular'}}>Parece que você e Bia</Text>
                           <Text style={{fontSize: 25, fontFamily: 'MontserratRegular'}}>combinam bastante!</Text>
+                            <Text style={{fontSize: 20, textAlign: 'center', paddingTop: 25, fontFamily: 'MontserratRegular'}}>Antes de enviar a solicitação, precisamos de um pouco mais de informações sobre você.</Text>
+                        </View>
+                        <View style={{}}>
                         </View>
                         <TouchableOpacity style={styles.ConfirmarModalButton}
                         onPress={() =>{}}>
-                            <Text allowFontScaling={false} style={styles.ConfirmModalText}>CONFIRMAR</Text>
+                            <Text allowFontScaling={false} style={styles.ConfirmModalText}>SEGUIR</Text>
                         </TouchableOpacity>
                     </View>
                 </View >          

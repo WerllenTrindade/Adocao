@@ -3,6 +3,7 @@ import { Control, Controller, FieldError } from 'react-hook-form';
 import { Input, InputProps } from '../Input';
 import { styles } from './styles';
 import { Text}  from 'react-native'
+import theme from '../../theme';
 
 type Props = InputProps & {
   control: Control<any>;

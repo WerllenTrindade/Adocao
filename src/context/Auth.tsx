@@ -15,9 +15,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 interface AuthContextData {
   authData?: DB_USER;
   setAuthData: React.Dispatch<React.SetStateAction<DB_USER | undefined>>;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  
   isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  
+  switchAccessType: 0 | 1
+  setSwitchAccessType:React.Dispatch<React.SetStateAction<0 | 1>>;
+
   signIn: ({email, password}: SignCredentials) => void;
+  handleSubmitSigIn: (resultado: any) => void;
 }
 
 export interface SignCredentials {
@@ -33,13 +39,25 @@ export const AuthContext = createContext<AuthContextData>(
   {} as AuthContextData
 );
 
+
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authData, setAuthData] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
-
+  const [switchAccessType, setSwitchAccessType] = useState<0 | 1>(0);
   useEffect(() => {
     loadFromStorage();
   }, []);
+
+  async function handleSubmitSigIn(data: any) {
+    if(!switchAccessType){
+      let email = data.email;
+      let password = data.password;
+      signIn({email, password})
+    }else{
+      register(data)
+    }
+
+  }
 
   async function loadFromStorage() {
 
@@ -48,6 +66,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     setAuthData(auEdith as DB_USER);
   }
 
+  async function register(object: any){
+    console.log('registrando ' + JSON.stringify(object))
+  }
+  
   async function signIn({ email, password }: SignCredentials) {
     try {
       setIsLoading(true);
@@ -85,7 +107,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         setAuthData,
         isLoading,
         setIsLoading,
-        signIn
+        signIn,
+        handleSubmitSigIn,
+        switchAccessType,
+        setSwitchAccessType,
       }}
     >
       {children}

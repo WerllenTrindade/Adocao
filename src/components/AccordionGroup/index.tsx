@@ -65,9 +65,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', 
   },
   title:{
-    fontSize: 16,
+    fontSize: 14,
     color: '#2d2d2d',
-    fontWeight: 'bold',
+    fontFamily: 'PoppinsRegular',
+    // fontWeight: 'bold',
     width: '90%'
   },
   body:{

@@ -13,7 +13,7 @@ import styles from './styles';
 import { SafeAreaView } from 'react-native';
 import { ArrDetails } from './ArrDetails';
 import { Button } from '../../components/Button';
-import { AdotarCao } from '../../components/Modals/AdotarCao';
+import { AdotarDog } from '../../compo../../components/Modals/AdotarDog'
 
 export function DetailsPet(){
   const [visibleModal, setVisibleModal] = useState(true);
@@ -26,15 +26,19 @@ export function DetailsPet(){
 
 
   function handleBackButton() {
-    if (canGoBack()) {
-        goBack();
-    }
-    else {
-        BackHandler.exitApp();
-    }
+      if (canGoBack()) {
+          goBack();
+      }
+      else {
+          BackHandler.exitApp();
+      }
 
-    return true;
-}
+      return true;
+  }
+
+  const handleCloseModal = () => setVisibleModal(false);
+
+  const handleOpenModal = () => setVisibleModal(true);
 
 
   return(
@@ -110,15 +114,15 @@ export function DetailsPet(){
         </View>
       </ScrollView>
 
-      <View style={{paddingHorizontal: 15, flex:1, justifyContent: 'flex-end', paddingBottom: '2%'}}>
-      <Button onPress={() => {}} title='ADOTAR'/>
+      <View style={{paddingHorizontal: 15, justifyContent: 'flex-end', paddingBottom: '2%'}}>
+      <Button onPress={handleOpenModal} title='ADOTAR'/>
       </View>
       </SafeAreaView>
 
       {
         visibleModal &&
-        <AdotarCao
-        onClose={() => {}}
+        <AdotarDog
+        onClose={handleCloseModal}
         visible={visibleModal}
         />
       }
