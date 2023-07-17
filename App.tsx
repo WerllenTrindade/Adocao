@@ -19,6 +19,7 @@ import {
 import * as SplashScreen from 'expo-splash-screen';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { AppProvider } from './src/context';
+import queryClient from './src/services/queryClient';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -56,6 +57,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={{ flex: 1 }} onLayout={onLayoutRootView}>
+      <QueryClientProvider client={queryClient}>
       <PaperProvider>
         <AppProvider>
             <NavigationContainer>
@@ -64,6 +66,7 @@ export default function App() {
             </NavigationContainer>
         </AppProvider>
       </PaperProvider>
+      </QueryClientProvider>
     </SafeAreaView>
   );
 }

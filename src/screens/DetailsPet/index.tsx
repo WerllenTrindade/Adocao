@@ -14,9 +14,11 @@ import { SafeAreaView } from 'react-native';
 import { ArrDetails } from './ArrDetails';
 import { Button } from '../../components/Button';
 import { AdotarDog } from '../../compo../../components/Modals/AdotarDog'
+import { useDog } from '../../context/Dog';
 
 export function DetailsPet(){
-  const [visibleModal, setVisibleModal] = useState(true);
+  const { dogDetails } = useDog();
+  const [visibleModal, setVisibleModal] = useState(false);
   const { navigate, canGoBack, goBack } = useNavigation<propsStack>();
   useEffect(() => {
       BackHandler.addEventListener('hardwareBackPress', handleBackButton);        
@@ -43,16 +45,9 @@ export function DetailsPet(){
 
   return(
     <View style={styles.container}>
-        <View style={{
-          position: 'absolute',
-          width: '100%',
-          height: 200,
-          backgroundColor: theme.COLORS.PRIMARY,
-          borderBottomLeftRadius: 50,
-          borderBottomRightRadius: 50,
-        }}/>
+    <View style={styles.contain}/> {/* olhar esse contain */}
       <SafeAreaView style={{marginTop: 12, flex:1}}>
-          <View   style={{
+          <View  style={{
               paddingHorizontal: 15,
               display: 'flex',
               flexDirection: 'row',
@@ -87,22 +82,26 @@ export function DetailsPet(){
 
       <View style={{alignItems: 'center'}}>
         <Text style={styles.name}>
-          Bia
+          {dogDetails.nome}
         </Text>
-        <ArrDetails />
+        <ArrDetails
+        idade={dogDetails.idade}
+        peso={dogDetails.peso}
+        sexo={dogDetails.sexo}
+        />
       </View>
 
       <ScrollView style={{paddingHorizontal: 15, paddingTop: 25}}>
         <View >
           <Text style={{fontFamily: 'MontserratBold', fontSize: 25}}>Personalidade</Text>
           <Text style={{fontFamily: 'PoppinsRegular', fontSize: 14, textAlign: 'justify'}}>
-            Dócil e tranquila
+            {dogDetails.personalidade}
           </Text>
         </View>
         <View style={{paddingTop: 8}}>
           <Text style={{fontFamily: 'MontserratBold', fontSize: 25}}>Porte</Text>
           <Text style={{fontFamily: 'PoppinsRegular', fontSize: 14, textAlign: 'justify'}}>
-           Médio
+           {dogDetails.porte}
           </Text>
         </View>
         <View style={{paddingTop: 8}}>

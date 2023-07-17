@@ -1,19 +1,30 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Text, LogBox, SafeAreaView, View, FlatList } from 'react-native'
 import { Action } from '../../components/Action';
 import theme from '../../theme';
 
 import styles from './styles';
-import CardDog, { dogProps } from '../../components/Cards/CardDog';
-import { pets } from '../../mock';
+import CardDog from '../../components/Cards/CardDog';
+import { useQuery } from '@tanstack/react-query';
 import { propsStack } from '../../routes/Models';
 import { useNavigation } from '@react-navigation/native';
-import useFetchRepos from '../../querys/repo';
+import { DogsProps, useDog } from '../../context/Dog';
+import axios from 'axios';
+import api from '../../services/api';
 
+import { pets } from '../../mock';
 
 export function PetHomeList() {
   const { navigate } = useNavigation<propsStack>();
-  // const {data } = useFetchRepos();
+  const { setDogDetails } = useDog();
+  const [listDog, setListDog] = useState([])
+  const { data, dataUpdatedAt } = useQuery<DogsProps[]>(['listdog'], async () => {
+    
+    const response = await axios.get('https://dog.ceo/api/breeds/image/random')
+
+    return response.data
+  });
+  
 
   useEffect(() => {
     LogBox.ignoreLogs(
@@ -22,10 +33,35 @@ export function PetHomeList() {
       ]);
   }, []);
 
+  useEffect(() => {
+    const fetchDogImages = async () => {
+      const updatedListDog: any = [];
+  
+      if (data) {
+        for (let i = 0; i < pets.length; i++) {
+          try {
+            const response = await axios.get(
+              `https://dog.ceo/api/breeds/image/random`
+            );
+            const image = response.data.message;
+  
+            updatedListDog.push({ ...pets[i], image });
+          } catch (error) {
+            console.error(`Failed to fetch image for ${pets[i].raca}: ${error}`);
+          }
+        }
+  
+        console.log('DQWJIDJQWQW ' + JSON.stringify(updatedListDog))
+        setListDog(updatedListDog);
+      }
+    };
+  
+    fetchDogImages();
+  }, [data]);
 
 
-  const handleDogDetails = async (item: dogProps) => {
-
+  const handleDogDetails = async (item: DogsProps) => {
+    setDogDetails(item)
     navigate('DetailsPet')
   }
 
@@ -63,7 +99,7 @@ export function PetHomeList() {
         initialNumToRender={9}
         showsVerticalScrollIndicator={false}
         keyExtractor={keyExtractorDogCard}
-        data={pets}
+        data={listDog}
         renderItem={cardListDogs}
         style={styles.containerList}
         contentContainerStyle={styles.list}

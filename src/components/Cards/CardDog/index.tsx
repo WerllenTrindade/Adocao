@@ -1,28 +1,24 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { View, Text, Image, ActivityIndicator, TouchableOpacity, TouchableOpacityProps} from 'react-native';
-import axios from 'axios';
+import { View, 
+  Text, 
+  Image, 
+  ActivityIndicator, 
+  TouchableOpacity, 
+  TouchableOpacityProps
+} from 'react-native';
 
 import { styles } from './styles';
 import Lottie from 'lottie-react-native';
 import { Card } from 'react-native-paper';
-import theme from '../../../theme';
-
-export interface dogProps {
-  id: number,
-  nome: string,
-  raca: string,
-  peso: number,
-  idade: number
-}
+import { DogsProps } from '../../../context/Dog';
 
 interface Props extends TouchableOpacityProps {
-  data: dogProps;
+  data: DogsProps;
   navigate: () => void;
 }
 const CardDog = ({ data, navigate, ...rest }: Props) => {
   const animation = useRef<any>(null);
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState('');
   const [isLiked, setIsLiked] = useState(false);
   const isFirstRun = useRef(true)
 
@@ -41,21 +37,6 @@ const CardDog = ({ data, navigate, ...rest }: Props) => {
   }
   },[isLiked])
 
-  useEffect(() => {
-    fetchDogImage();
-  }, []);
-  const fetchDogImage = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get('https://dog.ceo/api/breeds/image/random');
-      setImage(response.data.message);
-
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching dog image:', error);
-    }
-  };
-
   return (
     <Card style={styles.card}>
       <TouchableOpacity style={styles.TableStatusOpen} onPress={navigate} {...rest}>
@@ -63,7 +44,7 @@ const CardDog = ({ data, navigate, ...rest }: Props) => {
         {loading ? (
             <ActivityIndicator size="large" color="gray" />
           ) : (  
-            <Image resizeMode='stretch' style={styles.img} source={{uri: image !=="" ? image : undefined }} />
+            <Image resizeMode='stretch' style={styles.img} source={{uri: data.image !=="" ? data.image : undefined }} />
           )}
            <Text allowFontScaling={false} style={styles.NameFechamento}>{data.nome}</Text>
         </View>
