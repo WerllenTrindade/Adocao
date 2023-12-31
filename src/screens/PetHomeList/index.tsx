@@ -50,8 +50,7 @@ export function PetHomeList() {
             console.error(`Failed to fetch image for ${pets[i].raca}: ${error}`);
           }
         }
-  
-        console.log('DQWJIDJQWQW ' + JSON.stringify(updatedListDog))
+
         setListDog(updatedListDog);
       }
     };
@@ -68,7 +67,6 @@ export function PetHomeList() {
   const cardListDogs = useCallback(
     ({ item }: any) => (
       <CardDog
-        // navigate={() => }
         navigate={() => handleDogDetails(item)}
         data={item} />
     ), []);

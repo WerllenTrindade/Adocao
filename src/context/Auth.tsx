@@ -61,7 +61,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   async function loadFromStorage() {
 
-    const auth = await AsyncStorage.getItem('otimaGestao@User');
+    const auth = await AsyncStorage.getItem('adocao@User');
     const auEdith = auth ? JSON.parse(auth) : '';
     setAuthData(auEdith as DB_USER);
   }
@@ -89,7 +89,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   
 
         setAuthData(DB_OBJECT);
-        await AsyncStorage.setItem('otimaGestao@User', JSON.stringify(DB_OBJECT));
+        await AsyncStorage.setItem('adocao@User', JSON.stringify(DB_OBJECT));
         setIsLoading(false);
         return DB_OBJECT;
       }

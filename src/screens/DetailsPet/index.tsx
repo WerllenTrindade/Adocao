@@ -45,7 +45,7 @@ export function DetailsPet(){
 
   return(
     <View style={styles.container}>
-    <View style={styles.contain}/> {/* olhar esse contain */}
+    <View style={styles.contain}/>
       <SafeAreaView style={{marginTop: 12, flex:1}}>
           <View  style={{
               paddingHorizontal: 15,
@@ -118,7 +118,7 @@ export function DetailsPet(){
       </View>
       </SafeAreaView>
 
-      {
+       {
         visibleModal &&
         <AdotarDog
         onClose={handleCloseModal}

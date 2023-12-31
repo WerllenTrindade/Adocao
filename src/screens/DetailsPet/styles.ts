@@ -5,6 +5,14 @@ const styles = StyleSheet.create({
   container:{
     flex: 1
   },
+  contain: {
+    position: 'absolute',
+    width: '100%',
+    height: 200,
+    backgroundColor: theme.COLORS.PRIMARY,
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
+  },
   containBody: {
     alignItems: 'center', 
     paddingTop: 15

@@ -33,7 +33,7 @@ export const DrawerContent = (props: any) => {
 
   async function handleOnClose() {
     setLoading(true)
-    await AsyncStorage.removeItem('otimaGestao@User');
+    await AsyncStorage.removeItem('adocao@User');
     setAuthData(undefined);
     setLoading(false)
   }
